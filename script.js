@@ -6,9 +6,9 @@ var imgWidth = 250; // width of images (unit: px)
 var imgHeight = 350; // height of images (unit: px)
 
 if (window.innerWidth <= 768) {
-    radius = 300;
-    imgWidth = 100;
-    imgHeight = 100;
+    radius = 200;
+    imgWidth = 200;
+    imgHeight = 280;
 }
 // Link of background music - set 'null' if you dont want to play background music
 var bgMusicURL = 'https://api.soundcloud.com/tracks/143041228/stream?client_id=587aa2d384f7333a886010d5f52f302a';
