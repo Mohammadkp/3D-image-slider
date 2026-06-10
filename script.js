@@ -6,8 +6,8 @@ var imgWidth = 250; // width of images (unit: px)
 var imgHeight = 350; // height of images (unit: px)
 
 if (window.innerWidth <= 768) {
-    radius = 180;
-    imgWidth = 260;
+    radius = 300;
+    imgWidth = 200;
     imgHeight = 280;
 }
 // Link of background music - set 'null' if you dont want to play background music
