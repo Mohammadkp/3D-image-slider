@@ -1,14 +1,14 @@
 
-var radius = 200; // how big of the radius
+var radius = 240; // how big of the radius
 var autoRotate = true; // auto rotate or not
 var rotateSpeed = -60; // unit: seconds/360 degrees
-var imgWidth = 180; // width of images (unit: px)
-var imgHeight = 260; // height of images (unit: px)
+var imgWidth = 120; // width of images (unit: px)
+var imgHeight = 170; // height of images (unit: px)
 
 if (window.innerWidth <= 768) {
-    radius = 200;
-    imgWidth = 200;
-    imgHeight = 290;
+    radius = 180;
+    imgWidth = 260;
+    imgHeight = 280;
 }
 // Link of background music - set 'null' if you dont want to play background music
 var bgMusicURL = 'https://api.soundcloud.com/tracks/143041228/stream?client_id=587aa2d384f7333a886010d5f52f302a';
