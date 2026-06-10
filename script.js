@@ -5,6 +5,11 @@ var rotateSpeed = -60; // unit: seconds/360 degrees
 var imgWidth = 120; // width of images (unit: px)
 var imgHeight = 170; // height of images (unit: px)
 
+if (window.innerWidth <= 768) {
+    radius = 180;
+    imgWidth = 180;
+    imgHeight = 260;
+}
 // Link of background music - set 'null' if you dont want to play background music
 var bgMusicURL = 'https://api.soundcloud.com/tracks/143041228/stream?client_id=587aa2d384f7333a886010d5f52f302a';
 var bgMusicControls = true; // Show UI music control
@@ -18,8 +23,7 @@ setTimeout(init, 1000);
 var odrag = document.getElementById('drag-container');
 var ospin = document.getElementById('spin-container');
 var aImg = ospin.getElementsByTagName('img');
-var aVid = ospin.getElementsByTagName('video');
-var aEle = [...aImg, ...aVid]; // combine 2 arrays
+var aEle = [...aImg]; // combine 2 arrays
 
 // Size of images
 ospin.style.width = imgWidth + "px";

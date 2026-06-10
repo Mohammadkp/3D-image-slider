@@ -7,7 +7,7 @@ html,
 body {
   height: 100%;
   /* for touch screen */
-  touch-action: none; 
+  touch-action: manipulation; 
 }
 
 body {
@@ -118,5 +118,22 @@ body {
   } to{
     -webkit-transform: rotateY(0deg);
             transform: rotateY(0deg);
+  }
+}
+@media (max-width: 768px) {
+
+  body {
+    perspective: 1500px;
+  }
+
+  #drag-container,
+  #spin-container {
+    transform: rotateX(-5deg);
+  }
+
+  #drag-container p {
+    font-size: 22px;
+    width: 100%;
+    text-align: center;
   }
 }
