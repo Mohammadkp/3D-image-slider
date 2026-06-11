@@ -132,67 +132,19 @@ document.onmousewheel = function (e) {
 
 // Music
 const music = document.getElementById("bgMusic");
+let started = false;
 
 function startMusic() {
-  if (music) {
-    music.play().catch(() => {});
-  }
+  if (started) return;
+  started = true;
+
+  music.play().catch(() => {
+    started = false;
+  });
 }
 
-document.onpointerdown = function (e) {
-
-  startMusic(); // Music starts on first touch/swipe
-
-  clearInterval(odrag.timer);
-
-  e = e || window.event;
-
-  var sX = e.clientX,
-      sY = e.clientY;
-
-  this.onpointermove = function (e) {
-
-    e = e || window.event;
-
-    var nX = e.clientX,
-        nY = e.clientY;
-
-    desX = nX - sX;
-    desY = nY - sY;
-
-    tX += desX * 0.1;
-    tY += desY * 0.1;
-
-    applyTranform(odrag);
-
-    sX = nX;
-    sY = nY;
-  };
-
-  this.onpointerup = function () {
-
-    odrag.timer = setInterval(function () {
-
-      desX *= 0.95;
-      desY *= 0.95;
-
-      tX += desX * 0.1;
-      tY += desY * 0.1;
-
-      applyTranform(odrag);
-
-      playSpin(false);
-
-      if (Math.abs(desX) < 0.5 && Math.abs(desY) < 0.5) {
-        clearInterval(odrag.timer);
-        playSpin(true);
-      }
-
-    }, 17);
-
-    this.onpointermove = null;
-    this.onpointerup = null;
-  };
-
-  return false;
-};
+window.addEventListener("touchstart", startMusic, { once: true, passive: true });
+window.addEventListener("touchmove", startMusic, { once: true, passive: true });
+window.addEventListener("pointerdown", startMusic, { once: true });
+window.addEventListener("pointermove", startMusic, { once: true });
+window.addEventListener("scroll", startMusic, { once: true });
