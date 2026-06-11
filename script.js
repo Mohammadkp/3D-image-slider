@@ -151,14 +151,14 @@ document.addEventListener("touchmove", function (e) {
             e.touches[0].clientY - e.touches[1].clientY
         );
 
-        let delta = (currentDistance - initialDistance) * 0.5;
+        let delta = (currentDistance - initialDistance) * 2;
 
         radius += delta;
 
-        if (radius < 150) radius = 150;
-        if (radius > 600) radius = 600;
+        //if (radius < 150) radius = 150;
+       // if (radius > 600) radius = 600;
 
-        init(1);
+        init(0);
 
         initialDistance = currentDistance;
     }
