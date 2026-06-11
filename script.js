@@ -4,6 +4,7 @@ var autoRotate = true; // auto rotate or not
 var rotateSpeed = -60; // unit: seconds/360 degrees
 var imgWidth = 250; // width of images (unit: px)
 var imgHeight = 350; // height of images (unit: px)
+let isPinching = false;
 
 if (window.innerWidth <= 768) {
     radius = 350;
@@ -77,6 +78,10 @@ if (bgMusicURL) {
 
 // setup events
 document.onpointerdown = function (e) {
+
+  if (e.pointerType === "touch" && e.isPrimary) 
+return;
+  
   clearInterval(odrag.timer);
   e = e || window.event;
   var sX = e.clientX,
@@ -153,9 +158,9 @@ document.addEventListener("touchmove", function (e) {
 
         let delta = (currentDistance - initialDistance) * 2;
 
-        radius += delta;
+        radius -= delta;
 
-        //if (radius < 150) radius = 150;
+        if (radius < 400) radius = 400;
        // if (radius > 600) radius = 600;
 
         init(0);
