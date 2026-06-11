@@ -6,9 +6,9 @@ var imgWidth = 250; // width of images (unit: px)
 var imgHeight = 350; // height of images (unit: px)
 
 if (window.innerWidth <= 768) {
-    radius = 200;
-    imgWidth = 200;
-    imgHeight = 280;
+    radius = 350;
+    imgWidth = 180;
+    imgHeight = 250;
 }
 // Link of background music - set 'null' if you dont want to play background music
 var bgMusicURL = 'https://api.soundcloud.com/tracks/143041228/stream?client_id=587aa2d384f7333a886010d5f52f302a';
@@ -130,3 +130,36 @@ function startMusic() {
 ["pointerdown", "touchstart", "click", "keydown"].forEach(event => {
     document.addEventListener(event, startMusic, { once: true });
 });
+
+let initialDistance = 0;
+
+document.addEventListener("touchstart", function (e) {
+    if (e.touches.length === 2) {
+        initialDistance = Math.hypot(
+            e.touches[0].clientX - e.touches[1].clientX,
+            e.touches[0].clientY - e.touches[1].clientY
+        );
+    }
+});
+
+document.addEventListener("touchmove", function (e) {
+    if (e.touches.length === 2) {
+        e.preventDefault();
+
+        let currentDistance = Math.hypot(
+            e.touches[0].clientX - e.touches[1].clientX,
+            e.touches[0].clientY - e.touches[1].clientY
+        );
+
+        let delta = (currentDistance - initialDistance) * 0.5;
+
+        radius += delta;
+
+        if (radius < 150) radius = 150;
+        if (radius > 600) radius = 600;
+
+        init(1);
+
+        initialDistance = currentDistance;
+    }
+}, { passive: false });
