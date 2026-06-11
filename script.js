@@ -1,13 +1,14 @@
-var radius = 350; // how big of the radius
+var radius = 240;
 var autoRotate = true;
 var rotateSpeed = -60;
-var imgWidth = 250;
-var imgHeight = 350;
+var imgWidth = 120;
+var imgHeight = 170;
 
+// Mobile settings
 if (window.innerWidth <= 768) {
-    radius = 350;
-    imgWidth = 180;
-    imgHeight = 250;
+    radius = 220;
+    imgWidth = 170;
+    imgHeight = 240;
 }
 
 // animation start after 1000 milliseconds
