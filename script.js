@@ -139,6 +139,60 @@ function startMusic() {
   }
 }
 
-["pointerdown", "touchstart", "click", "keydown"].forEach(event => {
-  document.addEventListener(event, startMusic, { once: true });
-});
+document.onpointerdown = function (e) {
+
+  startMusic(); // Music starts on first touch/swipe
+
+  clearInterval(odrag.timer);
+
+  e = e || window.event;
+
+  var sX = e.clientX,
+      sY = e.clientY;
+
+  this.onpointermove = function (e) {
+
+    e = e || window.event;
+
+    var nX = e.clientX,
+        nY = e.clientY;
+
+    desX = nX - sX;
+    desY = nY - sY;
+
+    tX += desX * 0.1;
+    tY += desY * 0.1;
+
+    applyTranform(odrag);
+
+    sX = nX;
+    sY = nY;
+  };
+
+  this.onpointerup = function () {
+
+    odrag.timer = setInterval(function () {
+
+      desX *= 0.95;
+      desY *= 0.95;
+
+      tX += desX * 0.1;
+      tY += desY * 0.1;
+
+      applyTranform(odrag);
+
+      playSpin(false);
+
+      if (Math.abs(desX) < 0.5 && Math.abs(desY) < 0.5) {
+        clearInterval(odrag.timer);
+        playSpin(true);
+      }
+
+    }, 17);
+
+    this.onpointermove = null;
+    this.onpointerup = null;
+  };
+
+  return false;
+};
